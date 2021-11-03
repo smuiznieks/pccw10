@@ -2,6 +2,8 @@
 
 ## Week 01
 
+[Command Line Crash Course](https://learnrubythehardway.org/book/appendixa.html)
+
 [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
 
 [Install Git and Creating a Repository](https://medium.com/analytics-vidhya/github-tutorial-1-installing-git-and-creating-a-repository-984dc0447684)
