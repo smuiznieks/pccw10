@@ -1,0 +1,82 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Hello World!</h1>
+  <div id="displayFriends"></div>
+</body>
+</html>
+<script>
+  const myFriends = [
+    {
+      id: 101,
+      name: 'Selga',
+      state: 'OH',
+      favoriteColor: 'purple',
+      isStudent: false,
+    },
+    {
+      id: 102,
+      name: 'Anna',
+      state: 'IL',
+      favoriteColor: 'blue',
+      isStudent: true
+    }, 
+    {
+      id: 103,
+      name: 'Tim',
+      state: 'AZ',
+      favoriteColor: 'black',
+      isStudent: true
+    }
+  ];
+
+  // function getFriend() {
+  //   let friend = {
+  //     name: 'Tim',
+  //     state: 'AZ',
+  //     favoriteColor: 'black',
+  //     isStudent: true
+  //   };
+  //   return friend;
+  // }
+
+  function getFriend() {
+    return myFriends[2];
+  }
+
+  console.log(getFriend());
+
+  // console.log(myFriends);
+  // console.log(myFriends.length);
+  // console.log(myFriends[myFriends.length]);
+  // console.log(myFriends[myFriends.length - 1]);
+
+  for (i = 0; i < myFriends.length; i++) {
+    // console.log(i);
+    // console.log(myFriends[i]);
+    console.log(myFriends[i].name + ', ' + myFriends[i].isStudent);
+
+    if (myFriends[i].isStudent) {
+      console.log("Do you homework!!!");
+    } else {
+      console.log("Are you ready for office hours??")
+    }
+  }
+
+  function renderFriends(friends) {
+    const display = document.querySelector("#displayFriends");
+
+    for (i = 0; i < myFriends.length; i++) {
+      const friendElement = document.createElement("h3");
+      friendElement.innerHTML = friends[i].name;
+      display.append(friendElement);
+    }
+  }
+
+  renderFriends(myFriends);
+</script>

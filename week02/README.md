@@ -12,6 +12,8 @@
 10. Add the following line to your html body: `<h1>Hello World!</h1>`
 11. Add the following line inside your script tag: `console.log('Hello World!');`
 12. Refresh Google Chrome and verify your changes are there
+
+NOTE: We skipped Steps 13 - 19 in today's demo
 13. Follow instructions in Get Started documentation to add Bootstrap to this project: https://getbootstrap.com/ 
 14. Refresh page and notice changes
 15. Create a file in the same folder as your index.html: `style.css`
@@ -25,6 +27,7 @@ body {
 ```
 18. Make our CSS less ugly?
 19. Add Bootstrap container div, instructions [here](https://getbootstrap.com/docs/5.1/layout/containers/#default-container)
+
 20. JavaScript Time! Create an array of objects
 ```
 const myFriends = [
