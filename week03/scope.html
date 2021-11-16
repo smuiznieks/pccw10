@@ -1,0 +1,27 @@
+<h1>Scope Exercise</h1>
+
+<script>
+const a = 1;
+console.log(a);
+
+function scope() {
+  let b = 2;
+  console.log(b);
+
+  let f = c + d;
+  console.log(f);
+
+  if (1 === 1) {
+    let c = a + b;
+    console.log(c);
+  }
+
+  if (2 === 2) {
+    let d = a + b;
+    console.log(d);
+
+    let e = b + c;
+    console.log(e);
+  }
+}
+</script>

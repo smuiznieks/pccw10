@@ -1,0 +1,20 @@
+<h1>Dogs!</h1>
+
+<script>
+// Dog is our object (noun)
+var dog = { 
+  size: "large",
+  breed: "Mastiff",
+  eyes: "brown",
+  age: 4,
+  likesCats: false,
+}
+
+// Barking is a verb
+function bark(size, breed, eyeColor) {
+  console.log(`A ${size} ${breed} with ${eyeColor} eyes is barking! Woof!`);
+}
+
+// Calling the function and passing arguments
+bark(dog.size, dog.breed, dog.eyes);
+</script>
