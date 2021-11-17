@@ -6,13 +6,29 @@
 // Use console.log() to write your results
 
 var multiplier = 1;
-
+var table = '';
 // Psst... the starter code is not how we USUALLY write loops
 // What's different?
 // let i = 1 (instead of 0)
 // i <= 10 (instead of i < 10)
-for (let i = 1; i <= 10; i++) {
-  console.log(i * multiplier);
+for (let index = 0; index < 10; index++) {
+  let row = '';
+  for (let i = 1; i <= 10; i++) {
+    // console.log(i * multiplier);
+
+    let number = i * multiplier;
+
+    if (number < 10) {
+      row += `${number}    `;
+    } else {
+      row += `${number}   `; 
+    }
+  }
+  multiplier++;
+  // console.log(row);
+  table += `${row}\n`;
 }
+
+console.log(table);
 
 </script>
