@@ -1,0 +1,16 @@
+<script>
+  
+  let globalVariable = 'I can be accessed anywhere';
+
+  function myFunction() {
+    let variable = 'I can be accessed by this function only';
+  }
+
+  function mySecondFunction(isCondition) {
+    let variable = 'I can be accessed by this function only (including the block)';
+    if (isCondition) {
+      let anotherVariable = 'I can be accessed by this block only';
+    }
+  }
+
+</script>

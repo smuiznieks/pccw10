@@ -1,0 +1,30 @@
+<script>
+
+  // Pass by Reference
+  function updateObject(objectReference) {
+    objectReference.name = 'Bueller';
+  }
+
+  var myObject = {
+    name: 'Ferris'
+  }
+
+  console.log(myObject);
+  console.log('Calling updateObject...');
+  updateObject(myObject);
+  console.log(myObject);
+
+  // Pass by Value
+  let originalValue = 3;
+
+  function updateValue(originalValue) {
+    originalValue = originalValue + 5;
+    console.log(originalValue);
+  }
+
+  console.log(originalValue); // 3
+  console.log('Calling updateValue...');
+  updateValue(originalValue); // 8
+  console.log(originalValue); // 3
+
+</script>
