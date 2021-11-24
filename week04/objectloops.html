@@ -5,17 +5,18 @@
     model: 'Wrangler',
     color: 'blue',
     year: 2005,
-    isUsed: true
+    isUsed: true,
+    key: 'I am a key'
   }
 
   // Access all the keys in an object
-  Object.keys(car);
+  console.log(Object.keys(car));
 
   for (let key in car) {
     console.log(key);
     console.log(car[key]);
     // Why won't this work??
-    // console.log(car.key); 
+    console.log(car.key); 
   }
 
 </script>

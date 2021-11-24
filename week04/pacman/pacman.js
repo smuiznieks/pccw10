@@ -21,7 +21,7 @@ function Run() {
   let img = document.getElementById('PacMan');
   let imgWidth = img.width;
   focus = (focus + 1) % 2;
-  direction = checkPageBounds(direction, imgWidth, pos, null);
+  direction = checkPageBounds(direction, imgWidth, pos, pageWidth);
   img.src = pacArray[direction][focus];
   if (direction) {
     pos -= 20;
@@ -36,12 +36,21 @@ function Run() {
 // Inside of the Run() function you will also have to add an extra argument "pageWidth", which is declared on line 4 when you call the checkPageBounds() function below. 
 
 // This function determines the direction of PacMan based on screen edge detection. 
-function checkPageBounds(direction, imgWidth, pos, pageWidth) {
+function checkPageBounds(dir, width, position, sizeOfPage) {
   //
   // TODO: Complete this to reverse direction upon hitting screen edge
   //
-  return direction;
+  // console.log(imgWidth);
+  console.log(dir, width, position, sizeOfPage);
+  if (position + width > sizeOfPage) {
+    return 1;
+  } else if (position < 0) {
+    return 0;
+  }
+  return dir;
 }
+
+setInterval(Run, 200);
 
 //Please do not change
 module.exports = checkPageBounds;
