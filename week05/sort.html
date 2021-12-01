@@ -1,0 +1,28 @@
+<html>
+  <h1>Sorting Demo in Console</h1>
+</html>
+<script>
+  let salaries = ["930.23", "12332.23", "13.99", "84934.34", "1434923.57", "13.99"];
+  console.log(`Original array: ${salaries}`);
+
+  // Sort function is used to determine the order of the elements. It is expected to return
+  // a negative value if first argument is less than second argument, zero if they're equal and a positive
+  // value otherwise. If omitted, the elements are sorted in ascending, ASCII character order.
+  salaries.sort((a, b) => {
+    console.log(`Value a = ${a}`);
+    console.log(`Value b = ${b}`);
+    console.log(`a - b = ${a - b}`);
+
+    if ((a-b) > 0) {
+      console.log('a > b');
+    } else if ((a - b === 0)) {
+      console.log('a is equal to b')
+    } else {
+      console.log('a < b');
+    }
+
+    return a - b;
+  })
+
+  console.log(`Sorted array: ${salaries}`);
+</script>
