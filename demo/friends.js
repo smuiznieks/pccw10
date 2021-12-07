@@ -9,10 +9,12 @@ function getUsers() {
 
 // Calling this function feels like a real API request because it has a delay using setTimeout
 function mockApiRequest() {
-  console.log('Fetching users...')
+  console.log('Fetching users...');
   // getUsers = callback!
   setTimeout(getUsers, 3000);
 }
+
+// TODO: Write a function that returns a user's first and last name as a string
 
 function findFriends() {  
   // TODO: Filter who live in the same state (e.g. Ohio)
