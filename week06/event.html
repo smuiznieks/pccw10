@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Async Example</title>
+</head>
+<body>
+  <button id="callback-btn">Click me!</button>
+  <div id="container"></div>
+</html>
+<script>
+
+  let count = 0;
+  
+  function updateCount() {
+    count++;
+    const element = document.getElementById("container");
+    element.innerHTML = count;
+  }
+
+  // Add event listener to button with id callback-button
+  const button = document.getElementById("callback-button");
+  button.addEventListener("click", updateCount);
+
+</script>
