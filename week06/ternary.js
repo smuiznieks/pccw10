@@ -9,5 +9,12 @@ let taskColor = task.priority === 1 ? "red" :
                 task.priority === 2 ? "yellow" : "green";
 
 // TODO: fix to avoid using nested ternary statements
+// if (task.priority === 1) {
+//   taskColor = "red";
+// } else if (task.priority === 2) {
+//   taskColor = "yellow";
+// } else {
+//   taskColor = "green";
+// }ß
 
 console.log(taskColor);
