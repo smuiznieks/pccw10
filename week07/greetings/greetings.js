@@ -19,4 +19,13 @@ function greet(name) {
   return 'Hello, ' + name;
 }
 
-module.exports = greet;
+function sayGoodbye() {
+  return 'goodbye!';
+}
+
+// CommonJS module
+// https://flaviocopes.com/es-modules/
+// module.exports = greet;
+
+// ES module
+export default greet;
