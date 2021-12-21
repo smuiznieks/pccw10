@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+const double = (number) => {
+  return number * 2;
+}
+
+const triple = (number) => {
+  return number * 3;
+}
+
+const getTotal = (num1, num2, callback) => {
+  const sum = num1 + num2;
+  return callback(sum);
+};
+
+console.log(getTotal(4, 5, double));
+// console.log(getTotal(3, 6, triple));
+</script>
+</html>
