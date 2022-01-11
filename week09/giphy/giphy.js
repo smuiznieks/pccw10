@@ -1,6 +1,11 @@
 // But you shouldn't push your api key to your github!!
 const url = 'https://api.giphy.com/v1/gifs/trending?api_key=bXoHN9yQjHIfRUlRu6f8c07RfZPc0JCe';
 
+// TODO: refactor by creating renderGifs function
+// Implement default param gifs = []
+
+// TODO: review async 
+// TODO: add try catch
 async function getTrendingGifs() {
   let response = await fetch(url);
   let topGifs = await response.json();
