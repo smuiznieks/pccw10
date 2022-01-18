@@ -14,6 +14,7 @@
       font-size: 150%;
     }
   </style>
+  <button onclick="transpose()">Transpose Matrix</button>
   <button onclick="rotate()">Rotate Matrix</button>
 
   <div class="grid">
@@ -35,8 +36,27 @@
       [7, 8, 9],
     ];
 
+    // transpose result should be
+    // const transposeMatrix = [
+    //   [1, 4, 7],
+    //   [2, 5, 8],
+    //   [3, 6, 9],
+    // ];
+
+    // rotate result should be
+    // const rotateMatrix = [
+    //   [7, 4, 1],
+    //   [8, 5, 2],
+    //   [9, 6, 3],
+    // ];
+
     function rotate() {
       console.log('rotating...');
+
+    }
+
+    function transpose() {
+      console.log('transposing...');
     }
 
   </script>
