@@ -2,8 +2,8 @@
   <style>
     .grid {
       display: grid;
-      grid-template-columns: repeat(3, 60px);
-      grid-template-rows: repeat(3, 60px);
+      grid-template-columns: repeat(4, 60px);
+      grid-template-rows: repeat(4, 60px);
       grid-gap: 10px;
     }
     .box {
@@ -27,13 +27,21 @@
     <div class="box 7">7</div>
     <div class="box 8">8</div>
     <div class="box 9">9</div>
+    <div class="box 10">10</div>
+    <div class="box 11">11</div>
+    <div class="box 12">12</div>
+    <div class="box 13">13</div>
+    <div class="box 14">14</div>
+    <div class="box 15">15</div>
+    <div class="box 16">16</div>
   </div>
   <script>
     // This is the matrix we are rotating
     const matrix = [
-      [1, 2, 3],
-      [4, 5, 6],
-      [7, 8, 9],
+      [1, 2, 3, 4],
+      [5, 6, 7, 8],
+      [9, 10, 11, 12],
+      [13, 14, 15, 16]
     ];
 
     let boxes = document.getElementsByClassName("box");
@@ -54,10 +62,54 @@
 
     function transpose() {
       console.log('transposing...');
+      for (let i = 0; i < matrix.length - 1; i++) {
+        // console.log(`First loop where i = ${i} and matrix[i] = ${matrix[i]}`);
+        for (let j = i + 1; j < matrix.length; j++) {
+          // console.log(`Second loop where j = ${j} and matrix[i][j] = ${matrix[i][j]}`);
+          swap(i, j);
+        }
+      }
+      console.log(matrix);
+      writeToGrid();
+    }
+
+    function swap(firstIndex, secondIndex) {
+      let firstNumber = matrix[firstIndex][secondIndex];
+      let secondNumber = matrix[secondIndex][firstIndex];
+      matrix[firstIndex][secondIndex] = secondNumber;
+      matrix[secondIndex][firstIndex] = firstNumber;
+    }
+
+    function writeToGrid() {
+      let flattenedArray = matrix.flat();
+      console.log(flattenedArray);
+      console.log(boxes);
+      for (let i = 0; i < boxes.length; i++) {
+        boxes.item(i).innerHTML = flattenedArray[i];
+      }
     }
 
     function rotate() {
       console.log('rotating...');
+      transpose();
+      let floor = Math.floor(matrix.length / 2);
+      for (let i = 0; i < floor; i++) {
+        console.log(`First loop where i = ${i} and matrix[i] = ${matrix[i]}`);
+        for (let j = 0; j < matrix.length; j++) {
+          console.log(`Second loop where j = ${j} and matrix[i][j] = ${matrix[i][j]}`);
+          updateValues(i, j);
+        }
+      }
+      console.log(matrix);
+      writeToGrid();
+    }
+
+    function updateValues(firstIndex, secondIndex) {
+      let k = matrix.length - 1 - firstIndex;
+      let firstNumber = matrix[secondIndex][firstIndex];
+      let secondNumber = matrix[secondIndex][k];
+      matrix[secondIndex][firstIndex] = secondNumber;
+      matrix[secondIndex][k] = firstNumber;
     }
 
   </script>
