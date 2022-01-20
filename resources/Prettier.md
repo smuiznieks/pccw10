@@ -41,3 +41,5 @@ function sayHello(person) {
 
 sayHello({ first: "Sally" });
 ```
+
+![image](prettier.png)
