@@ -9,6 +9,8 @@
 
 Now whenever you save your files, it will automatically format your document!
 
+Click [here](https://www.digitalocean.com/community/tutorials/code-formatting-with-prettier-in-visual-studio-code) for more details.
+
 Before: inconsistent use of single/double quotes, missing semi-colons, inconsistent spacing
 
 ```
