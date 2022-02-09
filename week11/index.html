@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>  
+  <h2>Change Font Size</h2>
+  <a href="#" id="size-12">12</a>
+  <a href="#" id="size-14">14</a>
+  <a href="#" id="size-16">16</a>
+
+  <p>Hexagon drinking vinegar activated charcoal aute, vexillologist hammock knausgaard fugiat paleo man braid actually. Fixie kombucha brooklyn ennui selvage gentrify celiac franzen photo booth helvetica glossier mustache. Af wayfarers reprehenderit in skateboard chillwave, sunt officia esse pug succulents tilde minim. Food truck kale chips tumblr, sustainable disrupt health goth quis art party schlitz cupidatat pop-up thundercats neutra excepteur.</p>
+  
+  <script>
+    function makeSizer(size) {
+      return function() {
+        document.body.style.fontSize = size + 'px';
+      };
+    }
+
+    var size12 = makeSizer(12);
+    var size14 = makeSizer(14);
+    var size16 = makeSizer(16);
+
+    document.getElementById('size-12').onclick = size12;
+    document.getElementById('size-14').onclick = size14;
+    document.getElementById('size-16').onclick = size16;
+  </script>
+</body>
+</html>

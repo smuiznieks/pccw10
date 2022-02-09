@@ -5,17 +5,23 @@
   // how many words are there in this string?
   // split this data into an array of words
   // remove any , or . using filter on the array
+  // lorem = lorem.replaceAll(',', '').replaceAll('.', '');
+  // console.log(lorem);
+  // let data = lorem.split(' ');
+  // console.log(`How many words are in this string? ${data.length}`);
 
-  // write a function to display the words with n to a page
-  // generalize it to start at location = start
-  let arguments = [newData, start, pageLength]
-  let paginate = (theData, start, pageLength) => {
-    return page;
-  };
-  // set arguments using spread operator
-  paginate(...arguments)
+  // // write a function to display the words with n to a page
+  // // generalize it to start at location = start
+  // let arguments = [data, 3, 5]
+  // let paginate = (theData, start, pageLength) => {
+  //   let wordsWithN = theData.filter(word => word.includes('n'));
+  //   console.log(wordsWithN);
+  //   return wordsWithN.splice(start, pageLength);
+  // };
+  // // set arguments using spread operator
+  // console.log(paginate(...arguments)) // same as: paginate(data, 3, 5)
 
-  // write a function to count the number of occurances of each word
+  // write a function to count the number of occurences of each word
   // create an array of objects {word: , occurances: }
   // write out the x most common words
 
@@ -23,12 +29,37 @@
   // TODO: write a function to split a string into an array of words
   // - use ES6 syntax
   // - remove all commas and periods
+  let words = (paragraph) => {
+    let words = paragraph.split(' ');
+    words = words.map(x => x.replace(',', '').replace('.', ''));
+    return words;
+  }
 
   // This should print the length of the words array returned
   console.log(words(lorem).length);
 
   // TODO: write a function to count the number of occurrences of each word
+  let wordFrequency = (wordsArray) => {
+    let occurences = {};
+    wordsArray.map(word => {
+      if (occurences[word]) {
+        occurences[word]++;
+        // console.log(`${word}: ${occurences[word]}`);
+      } else {
+        occurences[word] = 1;
+        // console.log(`${word}: ${occurences[word]}`);
+      }
+    })
+    return occurences;
+  }
 
   // This should print an object containing all words and their occurrences
   console.log(wordFrequency(words(lorem)));
+
+  // write out the most common words
+  // this solution uses ES6!
+  // https://stackoverflow.com/questions/27376295/getting-key-with-the-highest-value-from-object
+  let frequency = wordFrequency(words(lorem))
+  console.log(Object.keys(frequency).reduce((a, b) => frequency[a] > frequency[b] ? a : b));
+
 </script>
