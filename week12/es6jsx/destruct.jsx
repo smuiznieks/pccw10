@@ -1,5 +1,6 @@
 "use strict";
 
+// Class Component
 class Person extends React.Component {
   constructor(props) {
     super(props);
@@ -21,6 +22,7 @@ class Person extends React.Component {
   }
 }
 
+// Functional Component
 const Details = (props) => {
   // TODO: destructure props
 
