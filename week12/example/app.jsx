@@ -1,5 +1,6 @@
 // Main Component
-const App = () => {
+const App = props => {
+  const header = props.header;
 
   let response = {
     data: [
@@ -10021,11 +10022,31 @@ const App = () => {
   // console.log(response.data)
 
   return(
-    <h1>My App!</h1>
+    <div>
+      <h1>{header}!</h1>
+      {response && response.data.map((whatever, i) => {
+        return <Gif gif={whatever} key={i}/>
+      })}
+    </div>
   );
 };
 
+const Gif = ({gif}) => {
+  console.log(gif);
+  let {
+    images: {
+      fixed_width: fixed_width,
+      ...otherImages
+    },
+    ...others
+  } = gif;
+  console.log('Other Images');
+  console.log(otherImages); // I had a spread operator in here which is why it wasn't working in demo
+  console.log(fixed_width);
+  return <img src={fixed_width.url} />
+}
+
 
 ReactDOM.render(
-  <App />, document.getElementById('root')
+  <App header="Top Gifs"/>, document.getElementById('surprise')
 );

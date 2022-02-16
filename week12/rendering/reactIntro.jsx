@@ -11,15 +11,20 @@ const App = () => {
   const initializeState = () => {
     console.log('initializing state...');
     // TODO: Here you will set the state object to have values according to the instructions
-
+    setState({
+      initialized: true,
+      productName: 'Avocado',
+      productDescription: 'Grown in Mexico',
+      productPrice: '$4.99'
+    })
     return state;
   };
   // you may use this log if needed to ensure you have the correct values in your state
   console.log('State: ', state);
-  const { initialized } = state;
+  const { initialized, productName, productDescription } = state;
 
   // use string interpolation to construct this
-  const stringToReturn = ``;
+  const stringToReturn = `I love ${productName}s that are ${productDescription}`;
 
   if (initialized) {
     return stringToReturn;
