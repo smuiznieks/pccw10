@@ -62,14 +62,16 @@ function SignUp() {
   }
 
   return (
-    <div>
-      <input type="text" name="name" value={values.name} onChange={handleChange}/>
+    <div className="container">
+      <h1>Sign Up!</h1>
+      <input type="text" className="form-control" placeholder="Name" name="name" value={values.name} onChange={handleChange}/>
       <div style={{color: 'red'}}>{errors.nameError}</div>
-      <input type="text" name="email" value={values.email} onChange={handleChange}/>
+      <input type="text" className="form-control" placeholder="Email" name="email" value={values.email} onChange={handleChange}/>
       <div style={{color: 'red'}}>{errors.emailError}</div>
-      <input type="text" name="password" value={values.password} onChange={handleChange}/>
+      <input type="text" className="form-control" placeholder="Password" name="password" value={values.password} onChange={handleChange}/>
       <div style={{color: 'red'}}>{errors.passwordError}</div>
-      <button onClick={handle}>Submit</button>
+      <br />
+      <button type="button" className="btn btn-primary" onClick={handle}>Submit</button>
     </div>
   )
 }
