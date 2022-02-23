@@ -26,20 +26,20 @@ function SignUp() {
 
   function validateName() {
     if (!values.name || values.name.length < 2) {
-      setError({...errors, nameError: 'too short'});
+      setError(errors => ({...errors, nameError: 'too short'}));
       console.log('ERROR: Name too short');
     } else {
-      setError({...errors, nameError: ''});
+      setError(errors => ({...errors, nameError: ''}));
       console.log('OK');
     }
   }
 
   function validateEmail() {
     if (!values.email || (values.email.includes('@') === false)) {
-      setError({...errors, emailError: 'not valid'});
+      setError(errors => ({...errors, emailError: 'not valid'}));
       console.log('ERROR: Email not valid');
     } else {
-      setError({...errors, emailError: ''});
+      setError(errors => ({...errors, emailError: ''}));
       console.log('OK');
     }
   }
@@ -47,10 +47,10 @@ function SignUp() {
   function validatePassword() {
     console.log(errors)
     if (!values.password || values.password.length < 8) {
-      setError({...errors, passwordError: 'too short'});
+      setError(errors => ({...errors, passwordError: 'too short'}));
       console.log('ERROR: Password too short');
     } else {
-      setError({...errors, passwordError: ''});
+      setError(errors => ({...errors, passwordError: ''}));
       console.log('OK');
     }
   }
@@ -68,7 +68,7 @@ function SignUp() {
       <div style={{color: 'red'}}>{errors.nameError}</div>
       <input type="text" className="form-control" placeholder="Email" name="email" value={values.email} onChange={handleChange}/>
       <div style={{color: 'red'}}>{errors.emailError}</div>
-      <input type="text" className="form-control" placeholder="Password" name="password" value={values.password} onChange={handleChange}/>
+      <input type="password" className="form-control" placeholder="Password" name="password" value={values.password} onChange={handleChange}/>
       <div style={{color: 'red'}}>{errors.passwordError}</div>
       <br />
       <button type="button" className="btn btn-primary" onClick={handle}>Submit</button>
