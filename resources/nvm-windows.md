@@ -1,6 +1,6 @@
 # NVM for Windows - Windows users only!
 
-## If you have a Mac, STOP! You can find instructions for how to use a Mac Node version manager [here](www.google.com).
+## If you have a Mac, STOP! You can find instructions for how to use a Mac Node version manager [here](https://github.com/smuiznieks/pccw10/blob/main/resources/nvm.md).
 
 <br/>
 
