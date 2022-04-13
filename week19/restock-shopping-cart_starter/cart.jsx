@@ -1,22 +1,25 @@
+const { useState, useEffect, useReducer } = React;
+const {
+  Card,
+  Accordion,
+  Button,
+  Container,
+  Row,
+  Col,
+  Image,
+  Input,
+} = ReactBootstrap;
+
 // simulate getting products from DataBase
-const products = [
-  { name: "Apples", country: "Italy", cost: 3, instock: 10 },
-  { name: "Oranges:", country: "Spain", cost: 4, instock: 3 },
-  { name: "Beans", country: "USA", cost: 2, instock: 5 },
-  { name: "Cabbage", country: "USA", cost: 1, instock: 8 },
-];
+// const products = [
+//   { name: "Apples", country: "Italy", cost: 3, inStock: 10 },
+//   { name: "Oranges", country: "Spain", cost: 4, inStock: 3 },
+//   { name: "Beans", country: "USA", cost: 2, inStock: 5 },
+//   { name: "Cabbage", country: "USA", cost: 1, inStock: 8 },
+// ];
 
-//=========Cart=============
-const Cart = (props) => {
-  const { Card, Accordion, Button } = ReactBootstrap;
-  let data = props.location.data ? props.location.data : products;
-  // console.log(`data:${JSON.stringify(data)}`);
-
-  return <Accordion defaultActiveKey="0">{list}</Accordion>;
-};
-
+// /helpers/useDataApi.jsx
 const useDataApi = (initialUrl, initialData) => {
-  const { useState, useEffect, useReducer } = React;
   const [url, setUrl] = useState(initialUrl);
   const [state, dispatch] = useReducer(dataFetchReducer, {
     isLoading: false,
@@ -27,7 +30,7 @@ const useDataApi = (initialUrl, initialData) => {
   // console.log(`useDataApi called`);
 
   useEffect(() => {
-    // console.log("useEffect Called");
+    console.log("useEffect Called");
     let didCancel = false;
     const fetchData = async () => {
       dispatch({ type: "FETCH_INIT" });
@@ -48,6 +51,7 @@ const useDataApi = (initialUrl, initialData) => {
       didCancel = true;
     };
   }, [url]);
+
 
   return [state, setUrl];
 };
@@ -78,24 +82,13 @@ const dataFetchReducer = (state, action) => {
   }
 };
 
+// /component/Products.jsx
+// import useDataApi ...
 const Products = (props) => {
-  const [items, setItems] = React.useState(products);
-  const [cart, setCart] = React.useState([]);
-  const [total, setTotal] = React.useState(0);
-  const {
-    Card,
-    Accordion,
-    Button,
-    Container,
-    Row,
-    Col,
-    Image,
-    Input,
-  } = ReactBootstrap;
-
-  const { Fragment, useState, useEffect, useReducer } = React;
+  const [items, setItems] = useState([]);
+  const [cart, setCart] = useState([]);
   const [query, setQuery] = useState("http://localhost:1337/api/products");
-  const [{ data, isLoading, isError }, doFetch] = useDataApi(
+  const [{ data }, apiCall] = useDataApi(
     "http://localhost:1337/api/products",
     {
       data: [],
@@ -106,15 +99,33 @@ const Products = (props) => {
 
   const addToCart = (e) => {
     let name = e.target.name;
-    let item = items.filter((item) => item.name == name);
+    let item = items.find((item) => item.name === name);
+
+    if (item.inStock < 1) {
+      alert('Out of stock!');
+      return;
+    }
+
     // console.log(`add to Cart ${JSON.stringify(item)}`);
-    setCart([...cart, ...item]);
-    //doFetch(query);
+    setCart([...cart, item]);
+    setItems((currentState) => {
+      let updateQuantity = currentState.find(x => x.name === item.name);
+      updateQuantity.inStock--;
+      return currentState;
+    })
   };
 
   const deleteCartItem = (index) => {
     let newCart = cart.filter((item, i) => index != i);
     setCart(newCart);
+
+    let itemToRestock = items.find((item, i) => i === index);
+    // console.log(itemToRestock);
+    setItems((currentState) => {
+      let restockItem = currentState.find(x => x.name === itemToRestock.name);
+      restockItem.inStock++;
+      return currentState;
+    })
   };
 
   const photos = ["apple.png", "orange.png", "beans.png", "cabbage.png"];
@@ -123,10 +134,9 @@ const Products = (props) => {
     return (
       <li key={index}>
         <Image src={photos[index % 4]} width={70} roundedCircle></Image>
-        <Button variant="primary" size="large">
-          {item.name}:{item.cost}
-        </Button>
-        <input name={item.name} type="submit" onClick={addToCart}></input>
+        <p>{item.name} ${item.cost}</p>
+        <p>Quantity: {item.inStock}</p>
+        <Button name={item.name} type="button" onClick={addToCart}>Add to Cart</Button>
       </li>
     );
   });
@@ -176,6 +186,31 @@ const Products = (props) => {
   const restockProducts = (url) => {
     // ADD CODE HERE!!!
     console.log('restocking products...');
+    apiCall(url);
+    console.log(data);
+    // TO DO: rename data to something more helpful so we can call something.data.map()
+    let newItems = data.data.map((newItem) => {
+      console.log(newItem);
+      let { cost, country, inStock, name } = newItem.attributes;
+      return { cost, country, inStock, name };
+    })
+
+    // setItems([...items, ...newItems]);
+
+    setItems((currentItems) => {
+      if (currentItems.length < 1) {
+        return newItems;
+      }
+      
+      currentItems.forEach(currentItem => {
+        let restockQuantity = newItems.find(y => y.name === currentItem.name).inStock;
+        currentItem.inStock += restockQuantity;
+        console.log(currentItem);
+        console.log(restockQuantity);
+      })
+
+      return [...currentItems];
+    })
   };
 
   return (
@@ -198,7 +233,7 @@ const Products = (props) => {
       <Row>
         <form
           onSubmit={(event) => {
-            restockProducts(`http://localhost:1337/${query}`);
+            restockProducts(query);
             // console.log(`Restock called on ${query}`);
             event.preventDefault();
           }}
