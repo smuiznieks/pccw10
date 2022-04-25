@@ -19,13 +19,9 @@ const {
 // ];
 
 // /helpers/useDataApi.jsx
-const useDataApi = (initialUrl, initialData) => {
+const useDataApi = (initialUrl) => {
   const [url, setUrl] = useState(initialUrl);
-  const [state, dispatch] = useReducer(dataFetchReducer, {
-    isLoading: false,
-    isError: false,
-    data: initialData,
-  });
+  const [inventory, setInventory] = useState([])
 
   // console.log(`useDataApi called`);
 
@@ -33,17 +29,12 @@ const useDataApi = (initialUrl, initialData) => {
     console.log("useEffect Called");
     let didCancel = false;
     const fetchData = async () => {
-      dispatch({ type: "FETCH_INIT" });
       try {
         const result = await axios(url);
         // console.log("FETCH FROM URl");
-        if (!didCancel) {
-          dispatch({ type: "FETCH_SUCCESS", payload: result.data });
-        }
+        setInventory(result.data);
       } catch (error) {
-        if (!didCancel) {
-          dispatch({ type: "FETCH_FAILURE" });
-        }
+        console.log('Error fetching!')
       }
     };
     fetchData();
@@ -53,47 +44,16 @@ const useDataApi = (initialUrl, initialData) => {
   }, [url]);
 
 
-  return [state, setUrl];
-};
-
-const dataFetchReducer = (state, action) => {
-  switch (action.type) {
-    case "FETCH_INIT":
-      return {
-        ...state,
-        isLoading: true,
-        isError: false,
-      };
-    case "FETCH_SUCCESS":
-      return {
-        ...state,
-        isLoading: false,
-        isError: false,
-        data: action.payload,
-      };
-    case "FETCH_FAILURE":
-      return {
-        ...state,
-        isLoading: false,
-        isError: true,
-      };
-    default:
-      throw new Error();
-  }
+  return [inventory, setUrl];
 };
 
 // /component/Products.jsx
 // import useDataApi ...
-const Products = (props) => {
+const Products = () => {
   const [items, setItems] = useState([]);
   const [cart, setCart] = useState([]);
   const [query, setQuery] = useState("http://localhost:1337/api/products");
-  const [{ data }, apiCall] = useDataApi(
-    "http://localhost:1337/api/products",
-    {
-      data: [],
-    }
-  );
+  const [inventory, doFetch] = useDataApi(query);
 
   // console.log(`Rendering Products ${JSON.stringify(data)}`);
 
@@ -186,10 +146,10 @@ const Products = (props) => {
   const restockProducts = (url) => {
     // ADD CODE HERE!!!
     console.log('restocking products...');
-    apiCall(url);
-    console.log(data);
-    // TO DO: rename data to something more helpful so we can call something.data.map()
-    let newItems = data.data.map((newItem) => {
+    doFetch(url);
+    console.log(inventory);
+    // TO DO: rename data to something more helpful so we can call inventory.data.map()
+    let newItems = inventory.data.map((newItem) => {
       console.log(newItem);
       let { cost, country, inStock, name } = newItem.attributes;
       return { cost, country, inStock, name };
@@ -233,9 +193,10 @@ const Products = (props) => {
       <Row>
         <form
           onSubmit={(event) => {
+            event.preventDefault();
             restockProducts(query);
             // console.log(`Restock called on ${query}`);
-            event.preventDefault();
+            
           }}
         >
           <input
