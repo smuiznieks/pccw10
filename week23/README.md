@@ -2,15 +2,16 @@
 
 ## Dockerize Full-Stack
 
-Before you get started, make sure to update the node version in both Dockerfiles to `FROM node:16`
+# Before you get started, make sure to update the node version in both Dockerfiles to `FROM node:16`
 
 1. `docker-compose up`
 2. `docker ps` to list running containers, `docker ps -a` to list ALL containers (including stopped containers)
 3. `docker exec -it [container-id or container-name] bash` to open terminal for container
 4. `docker-compose down`
-5. To remove all containers: `docker rm -f $(docker ps -a -q)`
+5. To remove all containers: `docker rm $(docker ps -a -q)`
+(Add `-f` if need to force it)
 6. To view all images: `docker images`
-7. To remove all images: `docker rmi $(docker images -a -q)`
+7. To remove all images: `docker rmi $(docker images -a -q)` -- don't do this as frequently
 
 More info: https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes 
 
@@ -38,3 +39,6 @@ Download Heroku CLI if needed. Login using `heroku login`.
 5. `heroku container:login`
 6. `heroku container:push web`
 7. `heroku container:release web`
+
+
+`docker system prune --volumes`

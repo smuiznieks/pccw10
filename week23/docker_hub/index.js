@@ -2,7 +2,8 @@ var express = require('express');
 var app     = express();
 
 app.get('/', function(req,res){
-    console.log(new Date().toLocaleString());
+  console.log(new Date().toLocaleString());
+	console.log('Wow this is so cool!');
 	res.send(new Date().toLocaleString());
 });
 
