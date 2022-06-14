@@ -14,7 +14,7 @@ function PlusMinus(props){
 
 function Data(props){
     return (<div>
-        Header:  {props.data.header}, 
+        Header:  {props.data.header1}, 
         Left:    {props.data.left}, 
         Article: {props.data.article}, 
         Right:   {props.data.right}, 
@@ -51,6 +51,7 @@ function App(){
         // read db data & update UI
         const response = read()
             .then(res => {
+                console.log(res)
                 setData(res)
         });        
     }, []);
@@ -74,7 +75,6 @@ function App(){
     </>);
 }
 
-ReactDOM.render(
-  <App/>,
-  document.getElementById('root')
-);
+const container = document.getElementById("root");
+const root = ReactDOM.createRoot(container);
+root.render(<App />);

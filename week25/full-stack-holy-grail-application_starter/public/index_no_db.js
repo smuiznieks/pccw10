@@ -13,15 +13,15 @@ function PlusMinus(props){
 }
 
 // UPDATE: I copied and pasted this component from index.js
-// function Data(props) {
-//   return (
-//     <div>
-//       Header: {props.data.header}, Left: {props.data.left}, Article:{" "}
-//       {props.data.article}, Right: {props.data.right}, Footer:{" "}
-//       {props.data.footer}
-//     </div>
-//   );
-// }
+function Data(props) {
+  return (
+    <div>
+      Header: {props.data.header}, Left: {props.data.left}, Article:{" "}
+      {props.data.article}, Right: {props.data.right}, Footer:{" "}
+      {props.data.footer}
+    </div>
+  );
+}
 
 function Display(props){
     return (<div>
@@ -53,7 +53,11 @@ function App(){
     </>);
 }
 
-ReactDOM.render(
-  <App/>,
-  document.getElementById('root')
-);
+// ReactDOM.render(
+//   <App/>,
+//   document.getElementById('root')
+// );
+
+const container = document.getElementById("root");
+const root = ReactDOM.createRoot(container);
+root.render(<App/>);
