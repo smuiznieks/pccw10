@@ -4,7 +4,13 @@ If you are giving a test file like `practice.test.js`, follow these steps:
 
 1. `npm init`
 2. `npm i jest`
-3. `npm test`
+3. Update `package.json`
+```
+"scripts": {
+  "test": "jest"
+},
+```
+4. `npm test`
 
 Bonus points if you create a `.gitignore` file
 
