@@ -1,0 +1,14 @@
+{
+  "name": "week29",
+  "version": "1.0.0",
+  "description": "If you are giving a test file like `practice.test.js`, follow these steps:",
+  "main": "practice.test.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^28.1.2"
+  }
+}
