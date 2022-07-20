@@ -54,6 +54,8 @@ mongoose
     app.use(cors());
     app.use(express.json());
 
+    // ALL OF YOUR LOGIC FOR ROUTES WILL GO HERE
+
     app.listen(port, () => {
       console.log("Server has started!");
     });
@@ -64,7 +66,7 @@ mongoose
 ## Deploying to Heroku
 1. `heroku login`
 2. `heroku git:remote [insert-app-name]`
-3. `heroku push [master or main depending on your branch name]`
+3. `git heroku push [master or main depending on your branch name]`
 4. To view logs: `heroku logs --tail`
 
 Make sure to update the following in your application:
